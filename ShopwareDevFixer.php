@@ -15,7 +15,7 @@ class ShopwareDevFixer extends Plugin
 	public function beforeFrontendCaching ()
 	{
 		$config = $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName($this->getName());
-		$webCachePath = $this->getPath() . "/../../../web/cache"; # TODO: is there a better way to get this path?
+		$webCachePath = $this->container->getParameter('kernel.cache_dir');
 
 		if ($config["clear_js_cache_before_request"]) {
 			foreach (glob("$webCachePath/*.js") as $path) {
